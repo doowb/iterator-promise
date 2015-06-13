@@ -33,15 +33,17 @@ each function to the next function in the stack.
 ```js
 var fs = require('fs');
 var iterator = require('iterator-promise');
+var Promise = require('bluebird');
+Promise.promisifyAll(fs);
 var stack = [
-  function (fp, next) { return fs.readFile(fp, 'utf8', next); },
-  function (contents, next) { return next(null, JSON.parse(contents)); }
+  Promise.method(function (fp) { return fs.readFileAsync(fp, 'utf8'); }),
+  Promise.method(function (contents) { return JSON.parse(contents); })
 ];
 var readJSON = iterator(stack);
-readJSON('./package.json', function (err, pkg) {
-  if (err) console.error(err);
-  console.log(pkg);
-});
+readJSON('./package.json')
+  .then(function (pkg) {
+    console.log(pkg);
+  });
 ```
 
 ## Related projects

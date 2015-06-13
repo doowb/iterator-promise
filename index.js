@@ -17,20 +17,24 @@
  * @name  iterator
  */
 
-
 module.exports = function iteratorPromise (stack) {
-  return function (obj) {
+  return function (/* arguments */) {
     var Promise = require('bluebird');
-    var current = Promise.resolve();
+    var self = this;
+    var args = [].slice.call(arguments);
+    var current = Promise.method(function (arg) {
+      return arg;
+    });
 
     if (!stack.length) {
-      return current.then(function () {
-        return obj;
-      });
+      return current(args[0]);
     }
-
+    var first = stack.shift();
+    if (!stack.length) {
+      return first.apply(self, args);
+    }
     return Promise.reduce(stack, function (acc, fn) {
       return fn(acc);
-    }, obj);
+    }, first.apply(self, args));
   };
 };

@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 var assert = require('assert');
 var iterator = require('./');
 
-describe('iterator-async', function () {
+describe('iterator-promise', function () {
   it('should create an iterator function when given a stack', function () {
     var called = [];
     var stack = getStack(called);

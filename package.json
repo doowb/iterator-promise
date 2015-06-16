@@ -24,5 +24,11 @@
   },
   "dependencies": {
     "bluebird": "^2.9.27"
-  }
+  },
+  "related": [
+    "loader-cache",
+    "iterator-async",
+    "iterator-sync",
+    "iterator-streams"
+  ]
 }

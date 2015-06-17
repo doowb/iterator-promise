@@ -18,10 +18,11 @@
  */
 
 module.exports = function iteratorPromise (stack) {
-  return function (/* arguments */) {
-    var Promise = require('bluebird');
-    var self = this;
+  var self = this;
+
+  return function () {
     var args = [].slice.call(arguments);
+    var Promise = require('bluebird');
     var current = Promise.method(function (arg) {
       return arg;
     });
@@ -29,10 +30,12 @@ module.exports = function iteratorPromise (stack) {
     if (!stack.length) {
       return current(args[0]);
     }
+
     var first = stack.shift();
     if (!stack.length) {
       return first.apply(self, args);
     }
+
     return Promise.reduce(stack, function (acc, fn) {
       return fn(acc);
     }, first.apply(self, args));

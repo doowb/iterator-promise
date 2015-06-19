@@ -7,6 +7,9 @@
 
 'use strict';
 
+var lazy = require('lazy-cache')(require);
+var bluebird = lazy('bluebird');
+
 /**
  * Iterate over a stack of promise functions passing the results of
  * each function to the next function in the stack.
@@ -22,7 +25,7 @@ module.exports = function iteratorPromise (stack) {
 
   return function () {
     var args = [].slice.call(arguments);
-    var Promise = require('bluebird');
+    var Promise = bluebird();
     var current = Promise.method(function (arg) {
       return arg;
     });

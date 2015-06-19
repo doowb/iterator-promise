@@ -1,7 +1,7 @@
 {
   "name": "iterator-promise",
   "description": "Iterate over a stack of functions.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/doowb/iterator-promise",
   "author": "Brian Woodward (https://github.com/doowb)",
   "repository": "doowb/iterator-promise",
@@ -23,7 +23,8 @@
     "mocha": "*"
   },
   "dependencies": {
-    "bluebird": "^2.9.27"
+    "bluebird": "^2.9.27",
+    "lazy-cache": "^0.1.0"
   },
   "meta": {
     "related": [
@@ -33,5 +34,11 @@
       "iterator-streams",
       "iterator-sync"
     ]
-  }
+  },
+  "keywords": [
+    "iterator",
+    "load",
+    "loader",
+    "promise"
+  ]
 }

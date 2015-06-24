@@ -18,10 +18,11 @@ devDependencies:
   mocha: '*'
 dependencies:
   bluebird: ^2.9.27
-meta:
+verbiage:
   related:
-    - bluebird
-    - loader-cache
-    - iterator-async
-    - iterator-streams
-    - iterator-sync
+    links:
+      - bluebird
+      - loader-cache
+      - iterator-async
+      - iterator-streams
+      - iterator-sync
